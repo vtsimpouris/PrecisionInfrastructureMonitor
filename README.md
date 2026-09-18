@@ -32,47 +32,51 @@ The project combines **C#/.NET, Docker, Python test automation, Gherkin/BDD, fau
 The project follows a simple test-and-diagnose pipeline:
 
 ```text
-┌───────────────────────────────┐
-│ Python / Gherkin Test Runner  │
-│                               │
-│ • Inject faults               │
-│ • Probe the system            │
-│ • Control Docker              │
-└───────────────┬───────────────┘
-                │
-                │ HTTP / config / container control
-                ▼
-┌───────────────────────────────┐
-│ Dockerized ASP.NET Core SUT   │
-│                               │
-│ • Measurement API             │
-│ • Runtime configuration       │
-│ • Injected fault state        │
-└───────────────┬───────────────┘
-                │
-                │ observations
-                ▼
-┌───────────────────────────────┐
-│ Residual Vector               │
-│                               │
-│ • HTTP failure                │
-│ • Config invalid              │
-│ • Network timeout             │
-│ • Heartbeat loss              │
-└───────────────┬───────────────┘
-                │
-                ▼
-┌───────────────────────────────┐
-│ Empirical Sensitivity Matrix  │
-└───────────────┬───────────────┘
-                │
-                ▼
-┌───────────────────────────────┐
-│ Fault Diagnosis               │
-│                               │
-│ SERVICE / CONFIG / NETWORK    │
-│ RUNTIME / UNKNOWN             │
-└───────────────────────────────┘
+┌─────────────────────────────────┐
+│ Python Test & Diagnostic Layer  │
+│                                 │
+│ • pytest / pytest-bdd           │
+│ • Inject faults                 │
+│ • Probe the system              │
+│ • Control Docker                │
+└────────────────┬────────────────┘
+                 │
+                 │ HTTP / config / container control
+                 ▼
+┌─────────────────────────────────┐
+│ Dockerized ASP.NET Core SUT     │
+│                                 │
+│ • Measurement API               │
+│ • Runtime configuration         │
+│ • Injected fault state          │
+└────────────────┬────────────────┘
+                 │
+                 │ observations
+                 ▼
+┌─────────────────────────────────┐
+│ Residual Vector                 │
+│                                 │
+│ • HTTP failure                  │
+│ • Config invalid                │
+│ • Network timeout               │
+│ • Heartbeat loss                │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Diagnostic Model                │
+│                                 │
+│ • Sensitivity matrix            │
+│ • Validation thresholds         │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Fault Diagnosis                 │
+│                                 │
+│ SERVICE / CONFIG / NETWORK      │
+│ RUNTIME / UNKNOWN               │
+└─────────────────────────────────┘
 ```
 
 Python drives the experiment by injecting faults into the Dockerized C# service and observing the resulting behaviour. Those observations are converted into residuals, which are used to estimate fault signatures in the sensitivity matrix and diagnose subsequent observations.
