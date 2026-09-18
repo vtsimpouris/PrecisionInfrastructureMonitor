@@ -27,6 +27,19 @@ The project combines **C#/.NET**, **Docker**, **Python test automation**, **Gher
 
 ---
 
+## Simulated measurement system
+
+The ASP.NET Core service represents a simplified precision-monitoring system. It generates simulated measurements including:
+
+- `XOffset`
+- `YOffset`
+- `Temperature`
+- timestamp and status information
+
+The X/Y offsets provide a basic metrology-style signal from which statistical diagnostics can be calculated, while the surrounding service is deliberately instrumented for configuration, communication, service, and runtime fault injection.
+
+The measurement model is intentionally simple: the main focus of the project is the automated system-integration and fault-diagnosis infrastructure built around it.
+
 ## Architecture
 
 The project follows a simple test-and-diagnose pipeline:
