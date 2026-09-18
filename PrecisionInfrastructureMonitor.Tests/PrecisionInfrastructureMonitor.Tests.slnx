@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../PrecisionInfrastructureMonitor/PrecisionInfrastructureMonitor.csproj" />
+  <Project Path="PrecisionInfrastructureMonitor.Tests.csproj" />
+</Solution>
