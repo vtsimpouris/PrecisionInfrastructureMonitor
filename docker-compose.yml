@@ -1,0 +1,9 @@
+services:
+  precision-monitor:
+    build:
+      context: ./PrecisionInfrastructureMonitor
+    container_name: precision-monitor
+    ports:
+      - "7060:8080"
+    volumes:
+      - ./PrecisionInfrastructureMonitor/config:/app/config
