@@ -4,7 +4,7 @@
 
 Automated system-integration testing and fault-diagnosis platform for a Dockerized C# / ASP.NET Core service.
 
-The project combines **C#/.NET**, **Docker**, **Python test automation**, **Gherkin/BDD scenarios**, fault injection, residual-based diagnostics, and **GitHub Actions CI**. Its purpose is to demonstrate how faults can be injected, observed, classified, and validated across several system layers.
+The project combines **C#/.NET, Docker, Python test automation, Gherkin/BDD, fault injection, residual-based diagnostics, and GitHub Actions CI** to demonstrate automated fault detection and system-level validation across multiple layers.
 
 > The ASP.NET Core application is a simulated system under test. The main focus is the automated test and diagnostic infrastructure around it.
 
@@ -26,19 +26,6 @@ The project combines **C#/.NET**, **Docker**, **Python test automation**, **Gher
 - Automated clean-environment validation with **GitHub Actions**
 
 ---
-
-## Simulated measurement system
-
-The ASP.NET Core service represents a simplified precision-monitoring system. It generates simulated measurements including:
-
-- `XOffset`
-- `YOffset`
-- `Temperature`
-- timestamp and status information
-
-The X/Y offsets provide a basic metrology-style signal from which statistical diagnostics can be calculated, while the surrounding service is deliberately instrumented for configuration, communication, service, and runtime fault injection.
-
-The measurement model is intentionally simple: the main focus of the project is the automated system-integration and fault-diagnosis infrastructure built around it.
 
 ## Architecture
 
@@ -89,6 +76,21 @@ The project follows a simple test-and-diagnose pipeline:
 ```
 
 Python drives the experiment by injecting faults into the Dockerized C# service and observing the resulting behaviour. Those observations are converted into residuals, which are used to estimate fault signatures in the sensitivity matrix and diagnose subsequent observations.
+
+---
+
+## Simulated measurement system
+
+The ASP.NET Core service represents a simplified precision-monitoring system. It generates simulated measurements including:
+
+- `XOffset`
+- `YOffset`
+- `Temperature`
+- timestamp and status information
+
+The X/Y offsets provide a basic metrology-style signal from which statistical diagnostics can be calculated, while the surrounding service is deliberately instrumented for configuration, communication, service, and runtime fault injection.
+
+The measurement model is intentionally simple: the main focus of the project is the automated system-integration and fault-diagnosis infrastructure built around it.
 
 ---
 
