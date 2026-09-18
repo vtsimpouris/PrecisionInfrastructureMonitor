@@ -79,7 +79,7 @@ The project follows a simple test-and-diagnose pipeline:
 └─────────────────────────────────┘
 ```
 
-Python drives the experiment by injecting faults into the Dockerized C# service and observing the resulting behaviour. Those observations are converted into residuals, which are used to estimate fault signatures in the sensitivity matrix and diagnose subsequent observations.
+Python drives the experiment by injecting faults into the Dockerized C# service and observing the resulting behaviour. Repeated fault-injection experiments convert observations into residuals to estimate the sensitivity matrix and validation thresholds. Subsequent observations are compared against these learned fault signatures for diagnosis.
 
 ---
 
